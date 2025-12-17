@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Booking Tiket Gunung Rinjani</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#e6dfd1;
+  color:#3e3b32;
+}
+.hidden{display:none}
+
+/* LOGIN */
+.login-page{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:url("https://upload.wikimedia.org/wikipedia/commons/3/3e/Mount_Rinjani.jpg") center/cover;
+}
+.login-box{
+  background:rgba(255,255,255,.9);
+  padding:30px;
+  width:300px;
+  text-align:center;
+  border-radius:12px;
+}
+.login-box input{
+  width:90%;
+  padding:10px;
+  margin:8px 0;
+}
+button{
+  padding:10px 20px;
+  background:#6b705c;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+.logo{width:90px}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  background:#6b705c;
+  color:white;
+}
+.logo-small{width:50px}
+.logout{background:#a4161a}
+
+/* TRAIL */
+.trail-container{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin:40px;
+}
+.trail-card{
+  background:white;
+  width:300px;
+  border-radius:12px;
+  overflow:hidden;
+  text-align:center;
+}
+.trail-card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+/* INFO */
+.prepare,.rating{
+  background:white;
+  width:70%;
+  margin:30px auto;
+  padding:20px;
+  border-radius:10px;
+}
+.rating span{
+  font-size:30px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="login-page" id="loginPage">
+  <div class="login-box">
+    <img class="logo"
+    src="https://upload.wikimedia.org/wikipedia/id/6/6f/Logo_TN_Gunung_Rinjani.png">
+    <h2>Booking Tiket Rinjani</h2>
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div class="hidden" id="homePage">
+
+<header>
+  <img class="logo-small"
+  src="https://upload.wikimedia.org/wikipedia/id/6/6f/Logo_TN_Gunung_Rinjani.png">
+  <h1>Booking Tiket Gunung Rinjani</h1>
+  <button class="logout" onclick="logout()">Log Out</button>
+</header>
+
+<div class="trail-container">
+
+  <div class="trail-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Mount_Rinjani_Sembalun.jpg">
+    <h3>Rinjani Via Sembalun</h3>
+    <button onclick="detailSembalun()">Pilih Jalur</button>
+  </div>
+
+  <div class="trail-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Torean_Trail_Rinjani.jpg">
+    <h3>Rinjani Via Torean</h3>
+    <button onclick="detailTorean()">Pilih Jalur</button>
+  </div>
+
+</div>
+
+<div class="prepare">
+<h2>Persiapan Sebelum Pendakian</h2>
+<ul>
+<li>Fisik & mental siap</li>
+<li>Peralatan standar pendakian</li>
+<li>Logistik cukup</li>
+<li>Ikuti aturan TN Gunung Rinjani</li>
+</ul>
+</div>
+
+<div class="rating">
+<h2>Rating Website</h2>
+<span onclick="rate(1)">⭐</span>
+<span onclick="rate(2)">⭐</span>
+<span onclick="rate(3)">⭐</span>
+<span onclick="rate(4)">⭐</span>
+<span onclick="rate(5)">⭐</span><br><br>
+<button onclick="submitRating()">Submit Rating</button>
+</div>
+
+</div>
+
+<script>
+function login(){
+  if(username.value==="admin" && password.value==="1234"){
+    loginPage.classList.add("hidden");
+    homePage.classList.remove("hidden");
+  }else{
+    alert("Username atau password salah!");
+  }
+}
+function logout(){
+  homePage.classList.add("hidden");
+  loginPage.classList.remove("hidden");
+}
+function detailSembalun(){
+  if(confirm("RINJANI VIA SEMBALUN\nEstimasi 3–4 hari\nHarga Rp150.000\n\nBooking?")){
+    booking();
+  }
+}
+function detailTorean(){
+  if(confirm("RINJANI VIA TOREAN\nEstimasi 2–3 hari\nHarga Rp130.000\n\nBooking?")){
+    booking();
+  }
+}
+function booking(){
+  let nama=prompt("Nama Leader:");
+  let jumlah=prompt("Jumlah Rombongan:");
+  let tanggal=prompt("Tanggal Pendakian:");
+  if(nama && jumlah && tanggal){
+    alert("BOOKING BERHASIL!\n\nScreenshot & kirim ke 0857-0882-9924\nNama Leader: "+nama);
+    alert("Terima kasih 🙏");
+  }
+}
+let rateValue=0;
+function rate(n){
+  rateValue=n;
+}
+function submitRating(){
+  if(rateValue===0) alert("Pilih rating dulu!");
+  else alert("Terima kasih atas rating Anda ⭐");
+}
+</script>
+
+</body>
+</html>
